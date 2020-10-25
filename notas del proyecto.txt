@@ -1,0 +1,8 @@
+***** Base de datos *****
+crear base de datos -->(linux) createdb “nombre_bd”; (windows) CREATE DATABASE “nombre_bd”;
+acceder a la base de datos--> (linux) psql nombredb  (windows)  \c “nombre_base_datos”
+crear usuario -->  CREATE USER “nombre_usuario”;
+Conceder permisos al usuario --> alter user usuario whith password 'password'
+
+**** Al dividir el setings ***
+No olvides crear el __init__
