@@ -1,0 +1,12 @@
+applications/autor/migrations/*
+applications/lector/migrations/*
+applications/libro/migrations/*
+
+applications/autor/__pycache__/*
+applications/lector/__pycache__/*
+applications/libro/__pycache__/*
+
+biblioteca/__pycache__/*
+biblioteca/settings/local.py
+biblioteca/settings/__pycache__/*
+
