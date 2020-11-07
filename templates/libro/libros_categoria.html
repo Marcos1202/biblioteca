@@ -1,0 +1,11 @@
+<h1>Lista de libros por categoria</h1>
+
+<form action="" method="get">{% csrf_token %}
+    <input type="text" id="kword" name="kword"  placeholder="Buscar po ID">
+    <button type="submit">Buscar</button>
+</form>
+<ul>
+    {% for l in lista_libros_categoria %}
+        <li>{{l.titulo}} - {{l.fecha}} - {{l.categoria}}</li>
+    {% endfor %}    
+</ul>

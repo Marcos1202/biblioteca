@@ -10,3 +10,4 @@ biblioteca/__pycache__/*
 biblioteca/settings/local.py
 biblioteca/settings/__pycache__/*
 
+resguardo_biblioteca/*

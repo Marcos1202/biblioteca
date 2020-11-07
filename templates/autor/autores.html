@@ -1,0 +1,14 @@
+<h1>Todos los autores</h1>
+
+<p>
+    <form action="" method="get">{% csrf_token %}
+        <input type="text" id="kword" name="kword" placeholder="Ingresa el nonbre">
+        <button type="submit">Buscar</button>
+    </form>
+</p>
+<ul>
+    {% for a in lista_autores %}
+        <li>{{a.nombre}} - {{a.apellido}} - {{a.nacionalidad}} - {{a.edad}}</li>
+    {% endfor %}
+</ul>    
+    

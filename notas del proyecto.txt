@@ -1,8 +1,73 @@
 ***** Base de datos *****
 crear base de datos -->(linux) createdb “nombre_bd”; (windows) CREATE DATABASE “nombre_bd”;
-acceder a la base de datos--> (linux) psql nombredb  (windows)  \c “nombre_base_datos”
+acceder a la base de datos--> (linux) psql nombredb  (windows)  \c “nombre_base_datos”;
 crear usuario -->  CREATE USER “nombre_usuario”;
-Conceder permisos al usuario --> alter user usuario whith password 'password'
+Conceder permisos al usuario --> alter user usuario with password 'password'
+
+----->restablecer base de datos
+-->en linux ingresamos con el usuario su postgres
+-->psql -U postgres "nombre_bd" < "nombre_archivo_respaldo" (en linux omitimos el parametro -U postgres)
+
 
 **** Al dividir el setings ***
 No olvides crear el __init__
+
+
+**** Manejo de la ORM ****
+filter ---> para filtrar
+filter(campodb__icontains=variable) para filtar, el campo de la base datos debe contar con lo almacenado en la variable
+PARA MAS DETALLES VER COMENTARIOS DEL ARCHIVO MANAGER DE AUTORES
+puedes vistar la orm de django en https://docs.djangoproject.com/en/3.0/ref/models/querysets/
+
+**** test rapido para consultas ****
+Podemos probar consultas dese la shell de django
+
+
+#Abrimos la shell
+python manage.py shell
+#importamos el archivo models
+from applications.libro.models import *
+#ejecutamos la consula (por lo general es el return del views)
+Categoria.objects.categoria_por_autor(1)
+
+---Prueba para agregar un autor
+#Abrimos la shell
+python manage.py shell
+#importamos el archivo models
+from applications.libro.models import *
+#ejecutamos la consula
+Libro.objects.add_autor_libro(2,8)
+
+
+--------------------Templates-----------------------
+para recorrer un manytomany en un template
+usamos un for objet.nombre_del_campo.all
+
+
+///// Esto lo usamos en la shell sirve para probar managers desde la shell///////
+from applications.lector.models import *
+Prestamo.objects.libro_promedio_edades()
+
+//////// Aannotate /////
+necesita un valor para agrupar usa el id
+ver manager de Prestamo
+
+////////////////////////////////////////
+
+<-----------busquedas avanzada (Diagramacion)--------------->
+
+--> Ingresamos a la shell de postgres
+--> Accedemos a la base de datos
+--> creamos una extencion ***** create extension pg_trgm
+--> para indicar donde queremos el campo de busqueda perrona **** 
+CREATE INDEX libro_titulo_idx ON libro_libro USING GIN(titulo gin_trgm_ops)
+
+C:\Program Files\PostgreSQL\12\scripts\runpsql.bat
+
+
+-----------Save vs objecs al momento de guardar -----------------
+ocjects.create siempre genera un nuevo registro en la base de datos
+save  si no existe lo crea, pero si ya existe actualiza
+
+ir a applications.lector.views.RegistrarPrestamo
+
